@@ -11,10 +11,10 @@ This Jira Add-on provides you an example how to connect Jira to the Solution Man
 
 ## What it can do 
 
-![alt text](https://github.com/SAP/solman-fb-jira-addon/tree/master/doc/Integration_Overview.png "Integration Overview")
+![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/Integration_Overview.png "Integration Overview")
 
 
-![alt text](https://github.com/SAP/solman-fb-jira-addon/tree/master/doc/Issue_Relation.png "Issue Relation")
+![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/Issue_Relation.png "Issue Relation")
 
 ## What it cannot do
 
