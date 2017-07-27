@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                <meta name="decorator" content="atl.admin">
+                <title>Presentation</title>
+                <style type="text/css">
+                        .forced-wrap {word-break:break-all}
+                </style>
+                $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+                $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+                $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+                $webResourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+                $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-core-resources")
+                $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-jumpurl-resources")
+                <context>atl.admin</context>
+       <context>atl.admin</context>
+    </head>
+    <body>
+        <aui-inline-dialog id="show-on-hover" responds-to="hover">
+            <p></p>
+        </aui-inline-dialog>
+            <div id="aui-message-bar"></div>
+             <header class="aui-page-header">
+                        <div class="aui-group" style="display: inline">
+                            <h3>Solman Selector</h3>
+                            <input type="text" style = "width: 600px" id="solman-connections-id" name="solman-connections" length="30" hidden="true"/>
+                        </div>
+             </header>
+
+              <div class="aui-group">
+                        <div class="aui-item">
+
+                           <label for="solmanJumpUrlSettings"><h4>Solution Manager Jump Url Settings</h4></label>
+
+                           <form class="aui">
+                             <div class="field-group">
+                                <label for="workPackageAppJumpUrl">Work Package App Jump Url</label>
+                                <input class="text" type="text" id="workPackageAppJumpUrl">
+                             </div>
+
+                             <div class="field-group">
+                                <label for="workItemAppJumpUrl">Work Item App Jump Url</label>
+                                <input class="text" type="text" id="workItemAppJumpUrl" name="workItemAppJumpUrl" length="90"/>
+                             </div>
+
+                           </form>
+                           <div class="buttons-container">
+                                <div class="buttons">
+                                      <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanJumpUrlSettings();">Add/Update</button>
+                                </div>
+                           </div>
+
+                        <table id="solmanpjumpurlsettings-table-id" class="aui aui-table-sortable">
+                                     <thead>
+                                            <tr>
+                                                <th class="aui-table-column-issue-key">Customer SolMan GUID</th>
+                                                <th class="aui-table-column-issue-key">Work Package App Jump Url</th>
+                                                <th class="aui-table-column-issue-key">Work Item App Jump Url</th>
+                                                <th></th>
+                                            </tr>
+                                     </thead>
+                                     <tbody>
+
+                                     </tbody>
+                         </table>
+
+                   </div>
+        </body>
+</html>

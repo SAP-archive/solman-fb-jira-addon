@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="decorator" content="atl.admin">
+        <title>Presentation</title>
+        <style type="text/css">
+                .forced-wrap {word-break:break-all}
+                .highlighted {
+                    background: #f0f0f0;
+                }
+        </style>
+        $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-table-sortable")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-table-sortable")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-iconfont")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-date-picker")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-progress-buttons")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-core-resources")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:jira-queue-processing-resources")
+        <context>atl.admin</context>
+    </head>
+    <body>
+        <div id="aui-message-bar"></div>
+
+        <header class="aui-page-header">
+            <div class="aui-group" style="display: inline">
+                <h3>Solman Selector</h3>
+                <input type="text" style = "width: 600px" id="solman-connections-id" name="solman-connections" length="30" hidden="true"/>
+            </div>
+        </header>
+
+        <div class="aui-group">
+            <div class="aui-item">
+               <button id="btnRefresh" onclick="spRefreshListIssues();" class="aui-button aui-button-primary">Refresh</button>
+
+               <button class="aui-button aui-button-primary" onclick="retryIssueSynchronization();">Retry</button>
+
+               <button id="btnSetSuccessful" onclick = "setToSuccessful();"class="aui-button aui-button-primary">Set to Successful</button>
+
+               <button onclick = "deleteSuccessfulEntries();" class="aui-button aui-button-primary">Delete successful entries</button>
+
+               <span class="aui-icon aui-icon-small aui-iconfont-refresh-small">Last Execution Time</span>
+
+               <span id="lastExecutionTimestampId"></span>
+            </div>
+        </div>
+
+        <div class="aui-group">
+                <div class="aui-item">
+
+                    <div id="unsynchronized-issues-id-table-container">
+                    </div>
+
+                     <table id="unsynchronized-issues-table-id" class="aui">
+                            <thead>
+                            <tr id="sort-header-row-id" class="tablesorter-headerRow">
+                                <th id="issueKey">Issue Key</th>
+                                <th id="solmanGuid">Issue GUID in SolMan</th>
+                                <th id="sendType">Send Type</th>
+                                <th id="sendDetails">Send Details</th>
+                                <th id="creationDate">Entry Timestamp</th>
+                                <th id="processingStatus">Processing Status</th>
+                                <th id="lastProcessingDate">Last Queue Processing Timestamp</th>
+                                <th id="successful">Successful</th>
+                                <th id="synchronizationDate">Successful date</th>
+                                <th id="lastProcessor">Last Processor</th>
+                            </tr>
+                            <tr>
+                                <th><input class="short-field" style="width:50px" type="text" id="issueKey" data-aui-field data-aui-validate-required="required" name="issueKey" title="Server Info"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th><input class="aui-date-picker" style="width:70px" name="creationDate" id="creation-date" type="date" min="2012-01-25" max="2030-12-25"/></th>
+                                <th></th>
+                                <th colspan="4"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                        </table>
+                    <div id="unsynchronized-issues-navigation">
+                        <header role="banner" id="header">
+                             <nav role="navigation" class="aui-navgroup aui-navgroup-horizontal">
+                              <div class="aui-navgroup-inner">
+                               <div class="aui-navgroup-primary">
+                                <ul id="unsynchronized-issues-navigation-id" class="aui-nav">
+
+                                </ul>
+                               </div>
+                              </div>
+                             </nav>
+                        </header>
+                    </div>
+                </div>
+                    <section role="dialog" id="unsynchronized-issue-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true">
+                        <!-- Dialog header -->
+                        <header class="aui-dialog2-header">
+
+                            <h2 id="header-error-message-id" class="aui-dialog2-header-main"></h2>
+                            <!-- Actions to render on the right of the header -->
+                            <!-- Close icon -->
+                            <a class="aui-dialog2-header-close">
+                                <span onclick="spRefreshListIssues();" class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+                            </a>
+                        </header>
+                        <!-- Main dialog content -->
+                        <div class="aui-dialog2-content">
+                            <div class="form-body" style="max-height : 120px;">
+                                <div id="div-aui-message-id">
+                                <span class="aui-icon icon-warning"></span>
+                                      <p id="error-message-id"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="aui-dialog2-footer">
+
+                        </footer>
+                   </section>
+                </div>
+    </body>
+</html>

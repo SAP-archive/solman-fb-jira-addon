@@ -1,0 +1,468 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="solman_integration"/>
+
+    <servlet name="HiServlet" class="com.sap.mango.jiraintegration.solman.temp.HiServlet" key="hiservlet">
+        <url-pattern>/hi</url-pattern>
+    </servlet>
+    <servlet name="SolmanParamsServletSave" class="com.sap.mango.jiraintegration.solman.webservices.solmanconnections.SolmanParamsSaveWS" key="paramsservletsave">
+        <url-pattern>/spSave</url-pattern>
+    </servlet>
+    <servlet name="SolmanParamsServletGet" class="com.sap.mango.jiraintegration.solman.webservices.solmanconnections.SolmanParamsGetWS" key="paramsservletget">
+        <url-pattern>/spGet</url-pattern>
+    </servlet>
+    <servlet name="DeleteSolmanParamsWS" class="com.sap.mango.jiraintegration.solman.webservices.solmanconnections.DeleteSolmanParamsWS" key="paramsservletdelete">
+        <url-pattern>/spDelete</url-pattern>
+    </servlet>
+    <servlet name="IssueStatusChangeServlet" class="com.sap.mango.jiraintegration.solman.webservices.IssueStatusChangeServlet" key="paramsservletstatuschange">
+        <url-pattern>/spStatusChange</url-pattern>
+    </servlet>
+    <servlet name="CreateUpdateUserStoryServlet" class="com.sap.mango.jiraintegration.solman.webservices.odata.userstory.CreateUpdateIssueServlet" key="paramsuserstory">
+        <url-pattern>/IssueService.svc/*</url-pattern>
+    </servlet>
+    <servlet name="AddProjectMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.projectmapping.AddProjectMappingServlet" key="saveprojecttypeparams">
+        <url-pattern>/addProjectMapping</url-pattern>
+    </servlet>
+    <servlet name="GetProjectMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.projectmapping.GetProjectMappingServlet" key="getprojecttypeparams">
+        <url-pattern>/getProjectMapping</url-pattern>
+    </servlet>
+    <servlet name="DeleteProjectMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.projectmapping.DeleteProjectMappingServlet" key="delprojecttypeparams">
+        <url-pattern>/deleteProjectMapping</url-pattern>
+    </servlet>
+    <servlet name="GetJiraProjectsServlet" class="com.sap.mango.jiraintegration.solman.webservices.projectmapping.GetJiraProjectsServlet" key="getjiraprojecttypeparams">
+        <url-pattern>/getJiraProjects</url-pattern>
+    </servlet>
+
+    <servlet name="AddIssueTypeMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuetypemapping.AddIssueTypeMappingServlet" key="saveissuetypeparams">
+        <url-pattern>/addIssueTypeMapping</url-pattern>
+    </servlet>
+    <servlet name="DeleteIssueTypeMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuetypemapping.DeleteIssueTypeMappingServlet" key="deleteissuetypeparams">
+        <url-pattern>/deleteIssueTypeMapping</url-pattern>
+    </servlet>
+    <servlet name="GetIssueTypeMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuetypemapping.GetIssueTypeMappingServlet" key="getissuetypeparams">
+        <url-pattern>/getIssueTypeMapping</url-pattern>
+    </servlet>
+    <servlet name="AddIssueStatusMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuestatus.AddIssueStatusMappingServlet" key="addissuestatusparams">
+        <url-pattern>/addIssueStatusMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetIssueStatusMappingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuestatus.GetIssueStatusMappingsServlet" key="getissuestatusparams">
+        <url-pattern>/getIssueStatusMappings</url-pattern>
+    </servlet>
+    <servlet name="DeleteStatusMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuestatus.DeleteStatusMappingServlet" key="delissuestatusparams">
+        <url-pattern>/deleteIssueStatusMapping</url-pattern>
+    </servlet>
+
+    <servlet name="AddFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.fieldmapping.AddFieldMappingServlet" key="savefieldmapping">
+        <url-pattern>/addFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="DeleteFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.fieldmapping.DeleteFieldMappingServlet" key="deletefieldparams">
+        <url-pattern>/deleteFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.fieldmapping.GetFieldMappingServlet" key="getfieldparams">
+        <url-pattern>/getFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="AddPartnerFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.partnerfieldmapping.AddPartnerFieldMappingServlet" key="savepartnerfieldmapping">
+        <url-pattern>/addPartnerFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="DeletePartnerFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.partnerfieldmapping.DeletePartnerFieldMappingServlet" key="deletepartnerfieldparams">
+        <url-pattern>/deletePartnerFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetPartnerFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.partnerfieldmapping.GetPartnerFieldMappingServlet" key="getpartnerfieldparams">
+        <url-pattern>/getPartnerFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="AddTextFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.textfieldmapping.AddTextFieldMappingServlet" key="savetextfieldmapping">
+        <url-pattern>/addTextFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="DeleteTextFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.textfieldmapping.DeleteTextFieldMappingServlet" key="deletetextfieldparams">
+        <url-pattern>/deleteTextFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetTextFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.textfieldmapping.GetTextFieldMappingServlet" key="gettextfieldparams">
+        <url-pattern>/getTextFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="AddAppointmentMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.appointmentmapping.AddAppointmentMappingServlet" key="saveappointmentmapping">
+        <url-pattern>/addAppointmentMapping</url-pattern>
+    </servlet>
+
+    <servlet name="DeleteAppointmentMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.appointmentmapping.DeleteAppointmentMappingServlet" key="deleteappointmentparams">
+        <url-pattern>/deleteAppointmentMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetAppointmentMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.appointmentmapping.GetAppointmentMappingServlet" key="getappointmentparams">
+        <url-pattern>/getAppointmentMapping</url-pattern>
+    </servlet>
+
+    <servlet name="GetAuthenticationTypesServlet" class="com.sap.mango.jiraintegration.solman.webservices.solmanconnections.GetAuthenticationTypesServlet" key="getauthenttypes">
+        <url-pattern>/getAuthenticationTypes</url-pattern>
+    </servlet>
+
+    <servlet name="CopyFieldMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.copyconfiguration.CopyFieldConfigurationServlet" key="copyfieldmapping">
+        <url-pattern>/copyFieldMapping</url-pattern>
+    </servlet>
+
+    <servlet name="CopyIssueMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.copyconfiguration.CopyIssueConfigurationServlet" key="copyissuemapping">
+        <url-pattern>/copyIssueMapping</url-pattern>
+    </servlet>
+
+    <servlet name="AddSolmanConnProxySettingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.proxysettings.AddSolmanConnProxySettingsServlet" key="addsolconproxysettings">
+        <url-pattern>/addSolmanConnProxySettings</url-pattern>
+    </servlet>
+
+    <servlet name="GetSolmanConnProxySettings" class="com.sap.mango.jiraintegration.solman.webservices.proxysettings.GetSolmanConnProxySettings" key="getsolconproxysettings">
+        <url-pattern>/getSolmanConnProxySettings</url-pattern>
+    </servlet>
+
+    <servlet name="DeleteSolmanConnProxySettingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.proxysettings.DeleteSolmanConnProxySettingsServlet" key="deletesolconproxysettings">
+        <url-pattern>/deleteSolmanConnProxySettings</url-pattern>
+    </servlet>
+
+    <servlet key="GetJumpUrlSettingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.jumpurl.GetJumpUrlSettingsServlet">
+        <url-pattern>/getJumpUrlSettings</url-pattern>
+    </servlet>
+
+    <servlet key="AddJumpUrlSettingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.jumpurl.AddJumpUrlSettingsServlet">
+        <url-pattern>/addJumpUrlSettings</url-pattern>
+    </servlet>
+
+    <servlet key="DeleteJumpUrlSettingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.jumpurl.DeleteJumpUrlSettingsServlet">
+        <url-pattern>/deleteJumpUrlSettings</url-pattern>
+    </servlet>
+
+    <servlet key="AddPriorityMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.prioritymapping.AddPriorityMappingServlet">
+        <url-pattern>/addPriorityMapping</url-pattern>
+    </servlet>
+
+    <servlet key="GetPriorityMappingsServlet" class="com.sap.mango.jiraintegration.solman.webservices.prioritymapping.GetPriorityMappingsServlet">
+        <url-pattern>/getPriorityMappings</url-pattern>
+    </servlet>
+
+    <servlet key="DeletePriorityMappingServlet" class="com.sap.mango.jiraintegration.solman.webservices.prioritymapping.DeletePriorityMappingServlet">
+        <url-pattern>/deletePriorityMapping</url-pattern>
+    </servlet>
+
+    <servlet key="GetJiraPrioritiesServlet" class="com.sap.mango.jiraintegration.solman.webservices.prioritymapping.GetJiraPrioritiesServlet">
+        <url-pattern>/getJiraPriorities</url-pattern>
+    </servlet>
+
+    <servlet key="GetJiraIssueTypesServlet" class="com.sap.mango.jiraintegration.solman.webservices.issuetypemapping.GetJiraIssueTypesServlet">
+        <url-pattern>/getJiraIssueTypes</url-pattern>
+    </servlet>
+
+    <servlet key="GetUnsychronizedIssuesServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.GetUnsychronizedIssuesServlet">
+        <url-pattern>/getUnsychronizedIssues</url-pattern>
+    </servlet>
+
+    <servlet key="GetSendTypesServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.GetSendTypesServlet">
+        <url-pattern>/getSendTypes</url-pattern>
+    </servlet>
+
+    <servlet key="GetProcessingStatusesServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.GetProcessingStatusesServlet">
+        <url-pattern>/getProcessingStatuses</url-pattern>
+    </servlet>
+
+    <servlet key="SetIssueToSynchronizedServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.SetIssueToSynchronizedServlet">
+        <url-pattern>/setIssueToSynchronized</url-pattern>
+    </servlet>
+
+    <servlet key="RetryIssueStatusSyncronizationServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.RetryIssueStatusSyncronizationServlet">
+        <url-pattern>/retryIssueStatusSyncronization</url-pattern>
+    </servlet>
+
+    <servlet key="DeleteSynchronizedIssuesServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.DeleteSynchronizedIssuesServlet">
+        <url-pattern>/deleteSynchronizedIssues</url-pattern>
+    </servlet>
+
+    <servlet key="GetSolmanPluginJobRunnerInfoServlet" class="com.sap.mango.jiraintegration.solman.webservices.unsychronizedissue.GetSolmanPluginJobRunnerInfoServlet">
+        <url-pattern>/getSolmanPluginJobRunnerInfo</url-pattern>
+    </servlet>
+
+    <ao key="ao-module">
+        <description>Solman params class for AO</description>
+        <entity>com.sap.mango.jiraintegration.solman.entities.solmanparams.SolmanParamsAO</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.projecttype.ProjectMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.issuetype.IssueTypeMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.fieldmapping.FieldMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.partnerfieldmapping.PartnerFldMap</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.textfieldmapping.TextFieldMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.appointmentmapping.AppointmentMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.issuestatus.IssueStatusMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.fileinfo.FileInfo</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.proxysettings.ProxySettings</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.jumpurl.JumpUrlSettings</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.priority.PriorityMapping</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.unsynchronizedissue.UnsynchronizedIssue</entity>
+        <entity>com.sap.mango.jiraintegration.solman.entities.unsynchronizedissue.IssueTransition</entity>
+    </ao>
+
+    <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" filter=""/>
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" filter=""/>
+    <component-import key="jiraHome" interface="com.atlassian.jira.config.util.JiraHome" filter=""/>
+    <component-import key="userMgr" interface="com.atlassian.sal.api.user.UserManager" filter=""/>
+        <component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">
+        <description>Component to access Active Objects functionality from the plugin</description>
+    </component-import>
+
+    <component-import key="eventPublisher" interface="com.atlassian.event.api.EventPublisher" />
+
+    <component key="eventListener" class="com.sap.mango.jiraintegration.solman.IssueEventListener">
+        <description>Class that processes the incoming JIRA issue events.</description>
+    </component>
+
+    <component key="solmanparams-dao" name="SolmanParamsDB" class="com.sap.mango.jiraintegration.solman.entities.solmanparams.SolmanParamsDAO"/>
+    <component key="projectmapping-dao" name="ProjectMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.projecttype.ProjectMappingDAO"/>
+    <component key="issue-type-mapping-dao" name="IssueTypeMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.issuetype.IssueTypeMappingDAO"/>
+    <component key="field-mapping-dao" name="FieldsMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.fieldmapping.FieldMappingDAO"/>
+    <component key="partner-field-mapping-dao" name="PartnerFieldsMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.partnerfieldmapping.PartnerFieldMappingDAO"/>
+    <component key="text-field-mapping-dao" name="TextFieldsMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.textfieldmapping.TextFieldMappingDAO"/>
+    <component key="appointment-mapping-dao" name="AppointmentMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.appointmentmapping.AppointmentMappingDAO"/>
+    <component key="issue-status-mapping-dao" name="IssueStatusMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.issuestatus.IssueStatusMappingDAO"/>
+    <component key="file-info-dao" name="FileInfo DAO" class="com.sap.mango.jiraintegration.solman.entities.fileinfo.FileInfoDAO"/>
+    <component key="proxy-settings-dao" name="ProxySettings DAO" class="com.sap.mango.jiraintegration.solman.entities.proxysettings.ProxySettingsDAO"/>
+    <component key="jump-url-settings-dao" name="JumpUrlSettings DAO" class="com.sap.mango.jiraintegration.solman.entities.jumpurl.JumpUrlSettingsDAO"/>
+    <component key="priority-mapping-dao" name="PriorityMapping DAO" class="com.sap.mango.jiraintegration.solman.entities.priority.PriorityMappingDAO"/>
+    <component key="issue-transition-dao" name="IssueTransitionDAO" class="com.sap.mango.jiraintegration.solman.entities.unsynchronizedissue.IssueTransitionDAO"/>
+    <component key="unsynchronized-issue-dao" name="UnsynchronizedIssue DAO" class="com.sap.mango.jiraintegration.solman.entities.unsynchronizedissue.UnsynchronizedIssueDAO"/>
+    <component key="issue-transition-service" name="IssueTransition Service" class="com.sap.mango.jiraintegration.solman.entities.unsynchronizedissue.IssueTransitionService"/>
+    <component key="solmanplugin-jobrunner" name="SolmanPluginJob Runner" class="com.sap.mango.jiraintegration.solman.scheduler.unsynchronizedissue.SolmanPluginJobRunnerImpl">
+        <interface>com.sap.mango.jiraintegration.solman.scheduler.unsynchronizedissue.SolmanPluginJobRunner</interface>
+    </component>
+    <component key="solmanplugin-manager-impl" name="SolmanPluginSchedulerManager" class="com.sap.mango.jiraintegration.solman.scheduler.unsynchronizedissue.SolmanPluginSchedulerManagerImpl">
+        <interface>com.sap.mango.jiraintegration.solman.scheduler.unsynchronizedissue.SolmanPluginSchedulerManager</interface>
+    </component>
+
+
+    <component key="issuestorage-service" name="Issue Storage Service" class="com.sap.mango.jiraintegration.solman.webservices.odata.userstory.IssueEntityStorageService">
+
+    </component>
+
+    <component key="issueCreationEventListener" class="com.sap.mango.jiraintegration.listeners.SyncIssueCreationEventListener" public="true">
+        <interface>com.sap.mango.jiraintegration.listeners.SyncEventListener</interface>
+    </component>
+
+    <component key="asyncIssueCreationEventListener" class="com.sap.mango.jiraintegration.listeners.AsyncIssueCreationEventListener" public="true">
+        <interface>com.sap.mango.jiraintegration.listeners.AsyncEventListener</interface>
+    </component>
+
+   <component key="solmanEventListener" class="com.sap.mango.jiraintegration.solman.scheduler.unsynchronizedissue.SolmanPluginJobLauncherImpl" public="true">
+        <description>Manages the plugin's lifecycle</description>
+        <interface>com.atlassian.sal.api.lifecycle.LifecycleAware</interface>
+    </component>
+
+   <component-import key="pluginScheduler">
+        <description>SAL Scheduler</description>
+        <interface>com.atlassian.sal.api.scheduling.PluginScheduler</interface>
+    </component-import>
+
+    <workflow-validator key="field-validator" name="Solution Manager Status Transfer"
+                        class="com.sap.mango.jiraintegration.validators.FieldValidatorFactory">
+        <description>Solution Manager Status Transfer Validator</description>
+
+        <validator-class>
+            com.sap.mango.jiraintegration.validators.FieldValidator
+        </validator-class>
+
+        <resource type="velocity" name="view"
+                  location="templates/com/sap/mango/jiraintegration/administration/statusvalidator/view-fieldValidator.vm"/>
+        <resource type="velocity" name="input-parameters"
+                  location="templates/com/sap/mango/jiraintegration/administration/statusvalidator/edit-fieldValidator.vm"/>
+        <resource type="velocity" name="edit-parameters"
+                  location="templates/com/sap/mango/jiraintegration/administration/statusvalidator/edit-fieldValidator.vm"/>
+    </workflow-validator>
+
+    <component-import key="loginUriProvider" interface="com.atlassian.sal.api.auth.LoginUriProvider" />
+    <component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer" />
+
+    <servlet key="solmaconn-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.solmanconnections.SolmanConnectionsServlet">
+        <url-pattern>/solmanconn-admin</url-pattern>
+    </servlet>
+
+    <servlet key="solmaissuemapping-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.issuemapping.SolmanIssueMappingServlet">
+        <url-pattern>/solman-issue-mapping-admin</url-pattern>
+    </servlet>
+
+    <servlet key="solmaissuetypemapping-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.issuetypemapping.SolmanIssueTypeMappingServlet">
+        <url-pattern>/solman-issue-type-mapping-admin</url-pattern>
+    </servlet>
+
+    <servlet key="solmanfieldmapping-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.fieldmapping.FieldMappingServlet">
+        <url-pattern>/solman-field-mapping-admin</url-pattern>
+    </servlet>
+
+    <servlet key="solmaissuestatusmapping-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.issuestatusmapping.SolmanIssueStatusMappingServlet">
+        <url-pattern>/solman-issue-status-mapping-admin</url-pattern>
+    </servlet>
+
+    <servlet key="solmanproxysettings-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.proxysettings.SolmanProxySettingsServlet">
+        <url-pattern>/solman-proxy-settings</url-pattern>
+    </servlet>
+
+    <servlet key="jumpurlsettings-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.jumpurl.JumpUrlSettingsServlet">
+        <url-pattern>/jumpurl-settings</url-pattern>
+    </servlet>
+
+    <servlet key="jiraqueueprocessing-servlet" class="com.sap.mango.jiraintegration.solman.web.admin.jiraqueueprocessing.JiraQueueProcessingServlet">
+        <url-pattern>/jira-queue-processing</url-pattern>
+    </servlet>
+
+    <web-resource name="Solman Connections Web Resources" key="solmanconn-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <resource type="download" name="solmanconnections.js" location="templates/com/sap/mango/jiraintegration/administration/solmanconnections/solmanconnections.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Connections Web Resources" key="solmanproxysettings-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <resource type="download" name="solmanproxysettings.js" location="templates/com/sap/mango/jiraintegration/administration/solmanproxysettings/solmanproxysettings.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Issue Mapping Web Resources" key="solman-issuemapping-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+        <resource type="download" name="solmanissuemapping.js" location="templates/com/sap/mango/jiraintegration/administration/solmanissuemapping/solmanissuemapping.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Field Mapping Web Resources" key="solman-fieldmapping-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+        <resource type="download" name="solmanfieldmapping.js" location="templates/com/sap/mango/jiraintegration/administration/solmanfieldmapping/solmanfieldmapping.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Issue Status Mapping Web Resources" key="solman-issuestatusmapping-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+        <resource type="download" name="solmanissuestatusmapping.js" location="templates/com/sap/mango/jiraintegration/administration/solmanissuestatusmapping/solmanissuestatusmapping.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Jump Url Web Resources" key="solman-jumpurl-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+        <resource type="download" name="solmanissuestatusmapping.js" location="templates/com/sap/mango/jiraintegration/administration/solmanjumpurlsettings/solmanjumpurlsettings.js"/>
+    </web-resource>
+
+    <web-resource name="Jira Queue Processing Web Resources" key="jira-queue-processing-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:form-validation</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select</dependency>
+        <dependency>com.atlassian.auiplugin:aui-date-picker</dependency>
+        <dependency>com.atlassian.auiplugin:aui-dropdown2</dependency>
+        <dependency>com.atlassian.auiplugin:aui-internal-state</dependency>
+        <dependency>com.atlassian.auiplugin:aui-experimental-progress-buttons</dependency>
+        <resource type="download" name="jiraqueueprocessing.js" location="templates/com/sap/mango/jiraintegration/administration/jiraqueueprocessing/jiraqueueprocessing.js"/>
+    </web-resource>
+
+    <web-resource name="Solman Plugin Core Web Resources" key="solman-core-resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="solman-core-resources.js" location="templates/com/sap/mango/jiraintegration/administration/core/solman-core-resources.js"/>
+    </web-resource>
+
+    <component-import key="transactionTemplate" interface="com.atlassian.sal.api.transaction.TransactionTemplate" />
+
+    <rest key="rest" path="/xproduct-admin" version="1.0">
+        <description>Provides REST resources for the admin UI.</description>
+    </rest>
+
+    <web-section key="solman_section" name="Solman Settings Section" location="admin_plugins_menu"
+                 i18n-name-key="solman.admin.section" weight="150">
+        <label key="solmanadminsection" />
+    </web-section>
+
+   <web-item key="solman_admin_destinations" name="Solman Destinations" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Solution Manager Destinations Administration Page</description>
+        <label key="solman.admin.solmandestinations.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/solmanconn-admin</link>
+    </web-item>
+
+    <web-item key="solman_proxy_settings" name="Solman Proxy Settings" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Solution Manager Proxy Settings Page</description>
+        <label key="solman.admin.proxysettings.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/solman-proxy-settings</link>
+    </web-item>
+
+    <web-item key="solman_issue-mapping" name="Solman Issue Mapping Administration" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Solution Manager Issue Mapping Administration</description>
+        <label key="solman.admin.issuemapping.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/solman-issue-mapping-admin</link>
+    </web-item>
+
+    <web-item key="solman_field-mapping" name="Solman Field Mapping Administration" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Solution Manager Field Mapping Administration</description>
+        <label key="solman.admin.fieldmapping.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/solman-field-mapping-admin</link>
+    </web-item>
+
+    <web-item key="solman_jump_url_mapping" name="Solman Jump Url Administration" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Solution Manager Jump Url Settings Administration</description>
+        <label key="solman.admin.jumpurlsettings.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/jumpurl-settings</link>
+    </web-item>
+
+    <web-item key="jira_queue_processing_page" name="Jira Queue Processing Administration" section="admin_plugins_menu/solman_section" weight="150" >
+        <description>Link to Jira Queue Processing Administration</description>
+        <label key="solman.admin.jiraqueueprocessing.label" />
+        <link linkId="solman-settings-link">/plugins/servlet/jira-queue-processing</link>
+    </web-item>
+
+    <customfield-type key="solman-link" name="Solman link" class="com.sap.mango.jiraintegration.solman.customfields.SolmanLinkCField">
+        <description>solman link</description>
+
+        <resource type="velocity" name="view" location="templates/plugins/fields/view/view-basictext.vm"/>
+        <resource type="velocity" name="edit" location="templates/edit-solmanLinkCField.vm"/>
+        <resource type="velocity" name="xml" location="templates/plugins/fields/xml/xml-basictext.vm"/>
+    </customfield-type>
+    <customfield-type key="solman-guid" name="Solman guid" class="com.sap.mango.jiraintegration.solman.customfields.SolmanGuidCField">
+        <description>solman guid</description>
+
+        <resource type="velocity" name="view" location="templates/plugins/fields/view/view-basictext.vm"/>
+        <resource type="velocity" name="edit" location="templates/plugins/fields/edit/edit-basictext.vm"/>
+        <resource type="velocity" name="xml" location="templates/plugins/fields/xml/xml-basictext.vm"/>
+    </customfield-type>
+    <customfield-type key="solman-customer-guid" name="Solman customer guid" class="com.sap.mango.jiraintegration.solman.customfields.SolmanGuidCField">
+        <description>solman customer guid</description>
+
+        <resource type="velocity" name="view" location="templates/plugins/fields/view/view-basictext.vm"/>
+        <resource type="velocity" name="edit" location="templates/plugins/fields/edit/edit-basictext.vm"/>
+        <resource type="velocity" name="xml" location="templates/plugins/fields/xml/xml-basictext.vm"/>
+    </customfield-type>
+
+    <web-panel name="SolManSynchronizationIndicator" i18n-name-key="solman-synchronization-indicator.name" key="solman-synchronization-indicator" location="atl.jira.view.issue.left.context"
+               weight="1000">
+        <description key="solman-synchronization-indicator.description">The Solman-JiraAddon Plugin</description>
+        <context-provider class="com.sap.mango.jiraintegration.solman.panels.SolmanSynchronizationIndicator"></context-provider>
+        <resource name="view" type="velocity" location="templates/com.sap.mango.jiraintegration.jira/view-solmanSynchronizationPanel.vm"/>
+        <label key="solman-synchronization-indicator.title"></label>
+    </web-panel>
+
+    <servlet-filter name="XSS Filter" key="xssfilter" class="com.sap.mango.jiraintegration.core.XSSFilter" location="before-dispatch" weight="200">
+        <description>Filters all suspicious string from the request parameters/headers</description>
+        <url-pattern>/plugins/servlet/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </servlet-filter>
+
+    <component-import key="schedulerService" interface="com.atlassian.scheduler.SchedulerService" />
+    <component-import key="schedulerHistoryService" interface="com.atlassian.scheduler.SchedulerHistoryService" />
+
+</atlassian-plugin>

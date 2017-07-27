@@ -1,0 +1,4 @@
+###if ($field)
+##	Solution Manager Status Validator. '$field'
+###end
+Solution Manager Status Validator.

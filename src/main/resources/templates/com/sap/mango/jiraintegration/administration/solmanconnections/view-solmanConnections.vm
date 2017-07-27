@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="decorator" content="atl.admin">
+        <title>Presentation</title>
+        <style type="text/css">
+            .forced-wrap {word-break:break-all}
+        </style>
+        $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-table-sortable")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-table-sortable")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-core-resources")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solmanconn-resources")
+       <context>atl.admin</context>
+    </head>
+    <body>
+    <div id="aui-message-bar"></div>
+    <form id="valid-submit-form" class="aui">
+            <div class="field-group">
+               <label for="customerDescription">Customer Description</label>
+               <input class="text" type="text" id="customerDescription" data-aui-field data-aui-validate-required="required" name="customerDescription" title="Customer Description">
+            </div>
+
+            <div class="field-group">
+                <label for="solmanUrl">SolMan URL</label>
+                <input class="text" type="text" id="solmanUrl"  data-aui-field data-aui-validate-required="required" name="solmanUrl" title="Server Info">
+            </div>
+
+            <div class="field-group">
+                <label for="userName">User Name</label>
+                <input class="text" type="text" id="userName"  data-aui-field data-aui-validate-required="required" name="userName" title="User Name">
+            </div>
+
+            <div class="field-group">
+                <label for="password">Password</label>
+                <input class="text" type="password" id="password"  data-aui-field data-aui-validate-required="required" name="password" title="Password">
+            </div>
+
+            <div class="field-group">
+                <label for="customerGuid">Customer SolMan GUID</label>
+                <input class="text" type="text" id="customerGuid"  data-aui-field data-aui-validate-required="required" name="customerGuid" title="Customer Guid">
+            </div>
+
+            <div class="field-group">
+                <label for="sapClient">Sap Client</label>
+                <input class="text" type="text" id="sapClient" data-aui-validation-field data-aui-validation-required="required" name="sapClient" title="Sap Client">
+            </div>
+
+             <div class="field-group">
+                  <label for="authenticationTypes">Authentication Type</label>
+                  <input class="text" type="text" id="authent-types-id" name="authentication-types" data-aui-validation-field data-aui-validation-required="required" length="30" hidden="true"/>
+             </div>
+
+              <div class="field-group">
+                  <label for="tokenEndpointUrl">Token Endpoint Url</label>
+                  <input class="text" type="text" id="tokenHcpAccountUrl" data-aui-validation-field data-aui-validation-required="required" name="tokenEndpointUrl" title="Token Endpoint Url">
+              </div>
+     </form>
+
+       <div class="buttons-container">
+             <div class="buttons">
+                     <button class="aui-button aui-button-primary" id="saveInfo" onclick="saveSolmanConnection();" type="submit">Save/Add</button>
+             </div>
+       </div>
+
+    <div id="table-conn-id-container">
+    </div>
+
+
+    <table id="table-conn-id" class="aui aui-table-sortable">
+        <thead>
+        <tr>
+            <th id="customerDescription">Customer Description</th>
+            <th id="solmanUrl">SolMan URL</th>
+            <th id="userName">User Name</th>
+            <th id="password">Password</th>
+            <th id="customerGuid">Customer SolMan GUID</th>
+            <th id="sapClient">Sap Client</th>
+            <th id="sapClient">Authentication Type</th>
+            <th id="tokenHcpAccountUrl">Token Endpoint URL</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+    </table>
+
+     <section role="dialog" id="remove-conn-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true"
+                    style="width: 650px;">
+                <header class="aui-dialog2-header">
+                    <h2 class="aui-dialog2-header-main">Remove Solman Connection</h2>
+
+                    <a class="aui-dialog2-header-close">
+                        <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+                    </a>
+                </header>
+
+                <div class="aui-dialog2-content">
+                    <div id="overwtite_warning" class="aui-message aui-message-warning">
+                        <p class="title">
+                            <strong>Warning!</strong>
+                        </p>
+                        <p>Do you really want to delete this connection?<br/>Deleting this connection also deletes the corresponding Jira mappings.</p>
+                    </div>
+                </div>
+
+                <footer class="aui-dialog2-footer">
+                    <div class="aui-dialog2-footer-actions">
+                        <button id="dialog-submit-button" class="aui-button aui-button-primary">Yes</button>
+                        <button id="dialog-close-button" class="aui-button aui-button-link">No</button>
+                    </div>
+                    <div class="aui-dialog2-footer-hint"></div>
+                </footer>
+            </section>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

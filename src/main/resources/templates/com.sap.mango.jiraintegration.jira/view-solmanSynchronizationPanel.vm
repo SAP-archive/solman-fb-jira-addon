@@ -1,0 +1,11 @@
+#if ($isIssueUnsynchronizedAppError)
+    <div class="aui-message error">
+           <span class="aui-icon icon-error"></span>
+           There was an application error on SolMan side. Status change cannot be performed on SolMan side. Please check directly in SolMan.
+    </div>
+#elseif ($isIssueUnsynchronizedCommError)
+    <div class="aui-message warning">
+          <span class="aui-icon icon-warning"></span>
+          There was a communication error, status change is queued for reprocessing
+    </div>
+#end

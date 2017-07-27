@@ -1,0 +1,264 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="decorator" content="atl.admin">
+        <title>Presentation</title>
+        <style type="text/css">
+                .forced-wrap {word-break:break-all}
+        </style>
+        $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:dialog2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-table-sortable")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-table-sortable")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-core-resources")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-fieldmapping-resources")
+        <context>atl.admin</context>
+    </head>
+    <body>
+        <div id="aui-message-bar"></div>
+
+        <header class="aui-page-header">
+            <div class="aui-group" style="display: inline">
+                <h3>Solman Selector</h3>
+                <input type="text" style = "width: 600px" id="solman-connections-id" name="solman-connections" length="30" hidden="true"/>
+            </div>
+            <button id="dialog-show-button" class="aui-button">Copy Configuration</button>
+        </header>
+
+          <div class="aui-group">
+                    <div class="aui-item">
+
+                       <label for="fieldMapping"><h4>Simple Field Mapping</h4></label>
+
+                       <form class="aui">
+                         <div class="field-group">
+                            <label for="solmanProcessType">SolMan Process Type</label>
+                            <input class="text" type="text" id="solmanProcessType">
+                         </div>
+
+                         <div class="field-group">
+                            <label for="solmanField">SolMan Field</label>
+                            <input class="text" type="text" id="solmanField">
+                         </div>
+
+                         <div class="field-group">
+                           <label for="jira-field">Jira Field</label>
+                           <input class="text" type="text" id="jira-field"/>
+                         </div>
+                       </form>
+                       <div class="buttons-container">
+                            <div class="buttons">
+                                  <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanFieldMapping();">Add/Update</button>
+                            </div>
+                       </div>
+
+                        <div id="fieldmapping-table-id-container">
+                        </div>
+                        <table id="fieldmapping-table-id" class="aui aui-table-sortable">
+                                  <thead>
+                                      <tr>
+                                          <th class="aui-table-column-issue-key">SolMan Process Type</th>
+                                          <th class="aui-table-column-issue-key">SolMan Field</th>
+                                          <th class="aui-table-column-issue-key">Jira Field</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+
+                                  </tbody>
+                        </table>
+                    </div>
+                    <div class="aui-item">
+                    </div>
+               </div>
+
+
+        <div class="aui-group">
+            <div class="aui-item">
+
+                <label for="fieldMapping"><h4>Partner Field Mapping</h4></label>
+
+                <form class="aui">
+                    <div class="field-group">
+                        <label for="solmanProcessTypePartner">SolMan Process Type</label>
+                        <input class="text" type="text" id="solmanProcessTypePartner">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="solmanPartnerFunction">SolMan Partner Function</label>
+                        <input class="text" type="text" id="solmanPartnerFunction">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="solmanPartnerField">SolMan Partner Field</label>
+                        <input class="text" type="text" id="solmanPartnerField">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="jira-field">Jira Field</label>
+                        <input class="text" type="text" id="jira-partner-field"/>
+                    </div>
+                </form>
+                <div class="buttons-container">
+                    <div class="buttons">
+                        <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanPartnerFieldMapping();">Add/Update</button>
+                    </div>
+                </div>
+
+                <div id="partnerfieldmapping-table-id-container">
+                </div>
+                <table id="partnerfieldmapping-table-id" class="aui aui-table-sortable">
+                    <thead>
+                    <tr>
+                        <th class="aui-table-column-issue-key">SolMan Process Type</th>
+                        <th class="aui-table-column-issue-key">SolMan Partner Function</th>
+                        <th class="aui-table-column-issue-key">SolMan Partner Field</th>
+                        <th class="aui-table-column-issue-key">Jira Field</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="aui-item">
+            </div>
+        </div>
+
+
+        <div class="aui-group">
+            <div class="aui-item">
+
+                <label for="fieldMapping"><h4>Text Field Mapping</h4></label>
+
+                <form class="aui">
+                    <div class="field-group">
+                        <label for="solmanProcessTypeText">SolMan Process Type</label>
+                        <input class="text" type="text" id="solmanProcessTypeText">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="solmanTextType">SolMan Text Type</label>
+                        <input class="text" type="text" id="solmanTextType">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="jira-field">Jira Field</label>
+                        <input class="text" type="text" id="jira-field-text"/>
+                    </div>
+                </form>
+                <div class="buttons-container">
+                    <div class="buttons">
+                        <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanTextFieldMapping();">Add/Update</button>
+                    </div>
+                </div>
+
+                <div id="textfieldmapping-table-id-container">
+                </div>
+                <table id="textfieldmapping-table-id" class="aui aui-table-sortable">
+                    <thead>
+                    <tr>
+                        <th class="aui-table-column-issue-key">SolMan Process Type</th>
+                        <th class="aui-table-column-issue-key">SolMan Text Type</th>
+                        <th class="aui-table-column-issue-key">Jira Field</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="aui-item">
+            </div>
+        </div>
+
+
+        <div class="aui-group">
+            <div class="aui-item">
+
+                <label for="fieldMapping"><h4>Appointment Field Mapping</h4></label>
+
+                <form class="aui">
+                    <div class="field-group">
+                        <label for="solmanProcessTypeText">SolMan Process Type</label>
+                        <input class="text" type="text" id="solmanProcessTypeAppointment">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="solmanTextType">SolMan Appointment Type</label>
+                        <input class="text" type="text" id="solmanAppointmentType">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="jira-field">Jira Field</label>
+                        <input class="text" type="text" id="jira-field-appointment"/>
+                    </div>
+                </form>
+                <div class="buttons-container">
+                    <div class="buttons">
+                        <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanAppointmentMapping();">Add/Update</button>
+                    </div>
+                </div>
+
+                <div id="appointmentmapping-table-id-container">
+                </div>
+                <table id="appointmentmapping-table-id" class="aui aui-table-sortable">
+                    <thead>
+                    <tr>
+                        <th class="aui-table-column-issue-key">SolMan Process Type</th>
+                        <th class="aui-table-column-issue-key">SolMan Appointment Type</th>
+                        <th class="aui-table-column-issue-key">Jira Field</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="aui-item">
+            </div>
+        </div>
+
+        <section role="dialog" id="copy-conf-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true"
+                style="width: 650px;">
+            <header class="aui-dialog2-header">
+                <h2 class="aui-dialog2-header-main">Copy Configuration</h2>
+
+                <a class="aui-dialog2-header-close">
+                    <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+                </a>
+            </header>
+
+            <div class="aui-dialog2-content">
+                <div id="overwtite_warning" class="aui-message aui-message-warning">
+                    <p class="title">
+                        <strong>Warning!</strong>
+                    </p>
+                    <p>This will overwrite existing configuration.</p>
+                </div>
+
+                <div id="parameter_select">
+                    <p>Copy Configuration from:</p>
+                    <label id="source-cutomer-guid"></label>
+                    <p/>
+                    <p>to customer:</p>
+                    <div class="aui-group">
+                        <form class="aui">
+                            <h3>Solman Selector</h3>    <input type="text" style = "width: 600px" id="solman-customer-id" name="solman-customer" length="30" hidden="true"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="aui-dialog2-footer">
+                <div class="aui-dialog2-footer-actions">
+                    <button id="dialog-submit-button" class="aui-button aui-button-primary">Copy</button>
+                    <button id="dialog-close-button" class="aui-button aui-button-link">Cancel</button>
+                </div>
+                <div class="aui-dialog2-footer-hint"></div>
+            </footer>
+        </section>
+    </body>
+</html>

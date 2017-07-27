@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="decorator" content="atl.admin">
+        <title>Presentation</title>
+        <style type="text/css">
+                .forced-wrap {word-break:break-all}
+        </style>
+        $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-form-validation")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-inline-dialog2")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-core-resources")
+        $webResourceManager.requireResource("com.sap.mango.jiraintegration:solman-issuetypemapping-resources")
+        <context>atl.admin</context>
+    </head>
+    <body>
+    <aui-inline-dialog id="show-on-hover" responds-to="hover">
+        <p></p>
+    </aui-inline-dialog>
+        <div id="aui-message-bar"></div>
+        <header class="aui-page-header">
+            <div class="aui-group">
+                <div class="aui-item">
+                    <h3>Solman Selector</h3>
+                </div>
+                <div class="aui-item">
+                     <form class="aui">
+                         <input type="text" style = "width : 100%" id="solman-connections-id" name="solman-connections" length="30" hidden="true"/>
+                     </form>
+                </div>
+            </div>
+        </header>
+
+          <div class="aui-group">
+                    <div class="aui-item">
+
+                       <label for="issueTypeMapping"><h4>Issue Type Mapping</h4></label>
+
+                       <form class="aui">
+                         <div class="field-group">
+                            <label for="solmanProcessType">SolMan Process Type</label>
+                            <input class="text" type="text" id="solmanProcessType">
+                         </div>
+
+                         <div class="field-group">
+                            <label for="jira-issue-type">Jira Issue Type</label>
+                            <input type="text" id="jira-issue-type" name="jira-issue-type" length="90" hidden="true"/>
+                         </div>
+                       </form>
+                       <div class="buttons-container">
+                            <div class="buttons">
+                                  <button class="aui-button aui-button-primary" id="saveInfo" onclick="spSaveSolmanIssueTypeMapping();">Add/Update</button>
+                            </div>
+                       </div>
+
+                        <table id="issuetypemapping-table-id" class="aui aui-table-sortable">
+                                  <thead>
+                                      <tr>
+                                          <th class="aui-table-column-issue-key">SolMan Process Type</th>
+                                          <th class="aui-table-column-issue-key">Jira Issue Type</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+
+                                  </tbody>
+                        </table>
+                    </div>
+                    <div class="aui-item">
+                    </div>
+               </div>
+    </body>
+</html>
