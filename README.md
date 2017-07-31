@@ -19,12 +19,12 @@ For the User Story Jira will be the leading systems, which means the status is c
 
 ![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/Issue_Relation.png "Issue Relation")
 
-During the initial creation of the Epics and User Stories also the assigned documents from Solution Documentation are transferred to Jira and attached to issue.
+During the initial creation of the Epics and User Stories also the assigned documents from Solution Documentation are transferred to Jira and attached to the issue.
 
 
 
 ## What it cannot do
-- As the external tool API of Focused Build does not allow the creation of objects on Solution Manager side this Jira add-on only creates issues on Jira side. You cannot use it create objects (business requirement, IT requirement, change,...) in Solution Manager out of Jira issues.
+- As the external tool API of Focused Build does not allow the creation of objects on Solution Manager side this Jira add-on only creates issues on Jira side. You cannot use it to create objects (business requirement, IT requirement, change,...) in Solution Manager out of Jira issues.
 - Once the issues are created on Jira side only status updates are exchanged between Solution Manager and Jira. There is not delta update on both sides for other information (e.g. description change, effort change,...) 
 
 ## How to start
