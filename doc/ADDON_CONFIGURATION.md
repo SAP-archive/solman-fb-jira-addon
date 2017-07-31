@@ -38,6 +38,7 @@ In case a proxy is required for the connectivity from Jira to Solution Manager y
 
 ## SolMan Issue Mapping
 In the *SolMan Issue Mapping* section you have to map the project, the issue types and the status (for incoming status updates).
+
 ![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/SolMan_Issue_Mapping.png "SolMan Issue Mapping")
 
 **Project Mapping:** Here you map the PPM project ID from SolMan side to the Jir project key. This is always a 1:1 mapping.

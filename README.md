@@ -30,4 +30,7 @@ During the initial creation of the Epics and User Stories also the assigned docu
 ## How to start
 - get the code from this repository
 - build the Jira add-on
-- deploy the Jira add-on on a Jira instance in a test environment and configure it
+- deploy the Jira add-on on a Jira instance in a test environment
+- perform required [configuration on Jira side](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/JIRA_CONFIGURATION.md)
+- perform the [Jira Add-on configuration](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/ADDON_CONFIGURATION.md)
+- perform the required configuration of the [Solution Manager external tool API](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/External_Tool_Integration_API_V2.0.pdf)
