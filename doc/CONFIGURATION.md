@@ -50,6 +50,7 @@ In the *SolMan Issue Mapping* section you have to map the project, the issue typ
 
 ## SolMan Field Mapping
 In the *SolMan Filed Mapping* section you can map fields from SolMan side to fields on Jira side. There are two different types of fields. The simple fields for which a 1:1 mapping can be done and the nested fields where additional information is required to perform the mapping. You can only map those fields which are available in the JSON structure send by Solution Manager.
+
 ![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/SolMan_Field_Mapping.png "SolMan Field Mapping")
 
 **Simple Field Mapping:** Here you a map simple fields of a SolMan transaction type to a field on Jira side.
