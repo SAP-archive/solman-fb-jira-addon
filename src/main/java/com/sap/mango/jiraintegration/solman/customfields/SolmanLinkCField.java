@@ -78,10 +78,10 @@ public class SolmanLinkCField extends GenericTextCFType{
         }
 
         if (issue.getIssueTypeObject().getName().toUpperCase().contains("EPIC")){
-            //return "<a href='https://ldcist7.wdf.sap.corp:44389/sap/bc/ui5_ui5/salm/ost_wp/index.html?WP_GUID=" +  guid  +  " '>WP in SolMan</a>";
+            //return "<a href='https://hostname:port/sap/bc/ui5_ui5/salm/ost_wp/index.html?WP_GUID=" +  guid  +  " '>WP in SolMan</a>";
             return "<a href='" + jumpUrlSettings.getWorkPackageAppJumpUrl() +  guid  +  "' target='_blank'>WP in SolMan</a>";
         }else if (issue.getIssueTypeObject().getName().toUpperCase().contains("STORY")){
-            //return "<a href='https://ldcist7.wdf.sap.corp:44389/sap/bc/ui5_ui5/salm/ost_wi/index.html?WS_GUID=" +  guid  +  " '>WI in SolMan</a>";
+            //return "<a href='https://hostname:port/sap/bc/ui5_ui5/salm/ost_wi/index.html?WS_GUID=" +  guid  +  " '>WI in SolMan</a>";
             return "<a href='" + jumpUrlSettings.getWorkItemAppJumpUrl() +  guid  +  "' target='_blank'>WI in SolMan</a>";
         }else{
             return "Unknown issue type";

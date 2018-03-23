@@ -21,8 +21,8 @@ public class IssueStatusChangeServlet extends JsonServlet
         String solManGuiD = req.getParameter("solManGuiDCFName");
         String status = req.getParameter("status");
         final Either<RestClient.ServiceError, String> serviceErrorStringEither = SolmanClient.solmanSendStatus(
-                new SolmanParams("https://ldcisr7.wdf.sap.corp:44311/sap/opu/odata/SALM/EXT_INTEGRATION_SRV/StatusSet",
-                        "C5236055", "demo1234", "0123456789", "Customer Description", "410", "", ""), solManGuiD, status, null);
+                new SolmanParams("https://hostname:port/sap/opu/odata/SALM/EXT_INTEGRATION_SRV/StatusSet",
+                        "u", "p", "0123456789", "Customer Description", "410", "", ""), solManGuiD, status, null);
         if (serviceErrorStringEither.isLeft())
         {
             sendError(resp, serviceErrorStringEither.toLeft());
