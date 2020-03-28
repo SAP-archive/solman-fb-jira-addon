@@ -20,7 +20,7 @@ During the initial creation of the Epics and User Stories also the assigned docu
 
 ## Requirements
 1. You need to have a [SAP Solution Manager with Focused Build](https://wiki.scn.sap.com/wiki/download/attachments/467538817/Focused%20Build%20%20How%20to%20get%20started%201.1.pdf?version=1&modificationDate=1500467704000&api=v2) installed (ST-OST add-on) and configured.
-2. You need to have your own [Jira](https://www.atlassian.com/software/Jira) Instance.
+2. You need to have your own [Jira](https://www.atlassian.com/software/jira/download) Instance.
 
 ![alt text](https://github.com/SAP/solman-fb-jira-addon/blob/master/doc/Integration_Overview.png "Integration Overview")
 
@@ -38,7 +38,8 @@ During the initial creation of the Epics and User Stories also the assigned docu
 
 ## Limitations
 - As the external tool API of Focused Build does not allow the creation of objects on Solution Manager side this Jira add-on only creates issues on Jira side. You cannot use it to create objects (business requirement, IT requirement, change,...) in Solution Manager out of Jira issues.
-- Once the issues are created on Jira side only status updates are exchanged between Solution Manager and Jira. There is not delta update on both sides for other information (e.g. description change, effort change,...) 
+- Once the issues are created on Jira side only status updates are exchanged between Solution Manager and Jira. There is not delta update on both sides for other information (e.g. description change, effort change,...).
+- You can only use this addon with the Jira "Server" version.
 
 
 ## How to obtain support
